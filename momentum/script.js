@@ -6,60 +6,15 @@ const time = document.querySelector('.time'),
   focus = document.querySelector('.focus');
 
 // Options
-let tmp;
-let nm;
+let tmp,
+    nm,
+    daytime;
+const dayOfWeek = ["Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"];
+const monthName = ["Января", "Февраля", "Марта", "Апреля", "Мая", "Июня", "Июля", "Августа", "Сентября", "Октября", "Ноября", "Декабря"];
 
-// Show Time
-function showTime() {
-  let today = new Date(),
-    hour = today.getHours(),
-    min = today.getMinutes(),
-    sec = today.getSeconds();
-    day = getDayOfWeek(today.getDay());
-    month =getMonthName(today.getMonth());
-    nday = today.getDate();
-
-
-  // Output Time
-  time.innerHTML = `${hour}<span>:</span>${addZero(min)}<span>:</span>${addZero(sec)}`;
-  fullDate.innerHTML = `${day}, ${nday} ${month}`;
-
-  setTimeout(showTime, 1000);
-}
-
-function getDayOfWeek(d){
-  switch (d) {
-    case 0: return "Воскресенье";
-    case 1: return "Понедельник";
-    case 2: return "Вторник";
-    case 3: return "Среда";
-    case 4: return "Четверг";
-    case 5: return "Пятница";
-    case 6: return "Суббота";
-  }
-}
-
-function getMonthName(m){
-  switch (m) {
-    case 0: return "Января";
-    case 1: return "Февраля";
-    case 2: return "Марта";
-    case 3: return "Апреля";
-    case 4: return "Мая";
-    case 5: return "Июня";
-    case 6: return "Июля";
-    case 7: return "Августа";
-    case 8: return "Сентября";
-    case 9: return "Октября";
-    case 10: return "Ноября";
-    case 11: return "Декабря";
-  }
-}
-
-// Add Zeros
-function addZero(n) {
-  return (parseInt(n, 10) < 10 ? '0' : '') + n;
-}
+const base = '/assets/images/';
+const images = ['01.jpg', '02.jpg', '03.jpg', '05.jpg', '06.jpg', '07.jpg', '08.jpg', '09.jpg', '10.jpg', '11.jpg', '12.jpg', '13.jpg', '14.jpg', '15.jpg', '16.jpg', '17.jpg', '18.jpg', '19.jpg', '20.jpg'];
+let i = Math.floor(Math.random()*20);
 
 // Set Background and Greeting
 function setBgGreet() {
@@ -69,27 +24,78 @@ function setBgGreet() {
 
   if (hour >= 6 && hour < 12) {
     // Morning
-    document.body.style.backgroundImage =
-      "url('https://i.ibb.co/7vDLJFb/morning.jpg')";
+    daytime="morning";
+    getImage();
     greeting.textContent = 'Доброе утро, ';
   } else if (hour >= 12 && hour < 18) {
     // Afternoon
-    document.body.style.backgroundImage =
-      "url('https://i.ibb.co/3mThcXc/afternoon.jpg')";
+    daytime="day";
+    getImage();
     greeting.textContent = 'Добрый день, ';
   } else if (hour >= 18) {
     // Evening
-    document.body.style.backgroundImage =
-      "url('https://i.ibb.co/3mThcXc/afternoon.jpg')";
+    daytime="evening";
+    getImage();
     greeting.textContent = 'Добрый вечер, ';
   }else if(hour > 0 && hour < 6){
     // Night
-    document.body.style.backgroundImage =
-      "url('https://i.ibb.co/924T2Wv/night.jpg')";
+    daytime="night";
+    getImage();
     greeting.textContent = 'Доброй ночи, ';
     document.body.style.color = 'white';
   }
 }
+
+function viewBgImage(data) {
+  const body = document.querySelector('body');
+  const src = data;
+  const img = document.createElement('img');
+  img.src = src;
+  img.onload = () => {      
+    body.style.backgroundImage = `url(${src})`;
+  }; 
+}
+function getImage() {
+  const index = i % images.length;
+  const imageSrc = base + daytime + "/" + images[index];
+  viewBgImage(imageSrc);
+  i++;
+  btn.disabled = true;
+  setTimeout(function() { btn.disabled = false }, 1000);
+} 
+
+const btn = document.querySelector('.btn');
+btn.addEventListener('click', getImage);
+
+
+// Show Time
+function showTime() {
+  let today = new Date(),
+    hour = today.getHours(),
+    min = today.getMinutes(),
+    sec = today.getSeconds();
+    day = dayOfWeek[today.getDay()];
+    month = monthName[today.getMonth()];
+    nday = today.getDate();
+
+
+  // Output Time
+  time.innerHTML = `${hour}<span>:</span>${addZero(min)}<span>:</span>${addZero(sec)}`;
+  fullDate.innerHTML = `${day}, ${nday} ${month}`;
+
+  if(min==0 && sec==0){ // change background image every hour
+    getImage();
+  }
+  setTimeout(showTime, 1000);
+}
+
+
+// Add Zeros
+function addZero(n) {
+  return (parseInt(n, 10) < 10 ? '0' : '') + n;
+}
+
+
 
 // Get Name
 function getName() {
