@@ -4,11 +4,14 @@ const time = document.querySelector('.time'),
   greeting = document.querySelector('.greeting'),
   name = document.querySelector('.name'),
   focus = document.querySelector('.focus');
+  citate = document.getElementById('cit');
 
 // Options
 let tmp,
     nm,
     daytime;
+
+const cUrl="https://api.chucknorris.io/jokes/random";
 const dayOfWeek = ["Воскресенье", "Понедельник", "Вторник", "Среда", "Четверг", "Пятница", "Суббота"];
 const monthName = ["Января", "Февраля", "Марта", "Апреля", "Мая", "Июня", "Июля", "Августа", "Сентября", "Октября", "Ноября", "Декабря"];
 
@@ -173,15 +176,28 @@ function clear(e){
 }
 
 
+//citate
+async function getCitate(){
+  const response = await fetch(cUrl);
+  const data = await response.json();
+  console.log(data);
+  citate.innerText = await data.value;
+
+}
+
+
+
 name.addEventListener('click', clear);
 name.addEventListener('keypress', setName);
 name.addEventListener('blur', setName);
 focus.addEventListener('click', clear);
 focus.addEventListener('keypress', setFocus);
 focus.addEventListener('blur', setFocus);
+(document.getElementById('more')).addEventListener('click', getCitate);
 
 // Run
 showTime();
 setBgGreet();
 getName();
 getFocus();
+getCitate();

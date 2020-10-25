@@ -2,6 +2,10 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  
+}
+*:focus {
+  outline: 0 !important;
 }
 
 body {
@@ -40,15 +44,45 @@ h2 {
   }
 }
 
-/* body {
-  margin: 0px;
-  height: 100vh;
-  width: 100vw;
-  background-size: cover;
-  background-position: center center;
-  background-image: url("https://raw.githubusercontent.com/irinainina/ready-projects/momentum/momentum/assets/images/night/17.jpg");  
+.citate{
+  position: fixed;
+  left:2rem;
+  bottom: 2rem;
+  min-height: 25vh;
+  width: 30vw;
+  background-color: rgba(255,255,255,0.5);
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1rem;
+
+}
+.citate-text{
+  width: 100%;
+  height: 75%;
+  font-size: 1.3vw;
+  text-align: center;
   
-} */
+}
+.citate-auth{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: 1.5vw;
+}
+#more{
+  width: 7vw;
+  border-radius: 0.8rem;
+  font-size: 1.5vw;
+}
+#more:hover{
+  cursor: pointer;
+  transform: translateY(1px);
+  background-color: rgba(0,200,0,0.1);
+  outline: none;
+}
+
 
 .btn {
   width: 60px;
