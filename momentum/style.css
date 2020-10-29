@@ -9,7 +9,7 @@
 }
 
 body {
-  font-family: 'Quicksand', sans-serif;
+  font-family: monospace;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -22,11 +22,6 @@ body {
   transition: background-image 1s ease-in-out;
 }
 
-.tm{
-  width: 34vw;
-  text-align: left;
-  padding-left: 1vw;
-}
 .time {
   font-size: 8.5vw;
 }
@@ -51,11 +46,11 @@ h2 {
     font-size: 7vw;
   }
 }
-
+/* ----------------citate------------------- */
 .citate{
   position: fixed;
-  left:2rem;
-  bottom: 2rem;
+  left:2vw;
+  bottom: 2vw;
   min-height: 25vh;
   width: 30vw;
   background-color: rgba(255,255,255,0.5);
@@ -63,7 +58,7 @@ h2 {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 1rem;
+  padding: 1vw;
 
 }
 .citate-text{
@@ -92,7 +87,7 @@ h2 {
   outline: none;
 }
 
-
+/* -----------update button ----------- */
 .btn {
   width: 60px;
   height: 60px;
@@ -117,23 +112,23 @@ h2 {
   transform: scale(1.02)
 }
 
-
+/* ------ weather------------------------ */
 .weather{
   position: fixed;
-  right:2rem;
-  top: 2rem;
-  min-height: 25vh;
+  right: 2vw;
+  top: 2vw;
+  min-height: 14vw;
   min-width: 20vw;
   background-color: rgba(255,255,255,0.5);
   border-radius: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 1rem;
-
+  padding: 1vw;
+  font-size: 1.2vw;
 }
 .temperature{
-  font-size: 2rem;
+  font-size: 2.5vw;
 }
 .top{
   display: flex;
@@ -149,6 +144,6 @@ h2 {
 }
 
 .city{
-  font-size: 1.8rem;
+  font-size: 1.8vw;
   text-align: right;
 }
